@@ -1,0 +1,13 @@
+flows: [
+  {
+    source: Dubbo Consumer,
+    calls: [
+      {
+        target: Mongo DB,
+        duration: 100,
+        durationAtNetwork: 10,
+        error: source/target
+      }
+    ]
+  }
+]

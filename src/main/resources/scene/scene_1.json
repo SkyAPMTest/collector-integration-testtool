@@ -1,0 +1,35 @@
+{
+  "flows": [
+    {
+      "source": "Dubbo Consumer",
+      "calls": [
+        {
+          "target": "Mongo DB",
+          "duration": 100,
+          "duration_at_network": 10,
+          "error": "source/target"
+        },
+        "Dubbo Provider"
+      ]
+    }
+  ],
+  "applications": [
+    {
+      "application": "Dubbo Consumer",
+      "exit_operation_name": "/exit/xxx",
+      "entry_operation_name": "/entry/xxx",
+      "span_type": "Entry",
+      "span_layer": "RPCFramework",
+      "component_name": "Dubbo",
+      "peer": "ip:port",
+      "tags": [],
+      "logs": {}
+    },
+    {
+      "application": "Dubbo Provider"
+    },
+    {
+      "application": "Mongo DB"
+    }
+  ]
+}

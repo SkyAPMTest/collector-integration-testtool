@@ -1,0 +1,23 @@
+!!org.apache.skywalking.apm.collector.testtool.dsl.ErrorEnum
+
+flows:
+  - source: Test Source 1
+    calls:
+      - target: Test Target 1_1
+        duration: 100
+        durationAtNetwork: 10
+        error: Source
+      - target: Test Target 1_2
+        duration: 100
+        durationAtNetwork: 10
+        error: Target
+  - source: Test Source 2
+    calls:
+      - target: Test Target 2_1
+        duration: 100
+        durationAtNetwork: 10
+        error: Target
+      - target: Test Target 2_2
+        duration: 100
+        durationAtNetwork: 10
+        error: Source
