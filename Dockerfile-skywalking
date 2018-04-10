@@ -1,0 +1,44 @@
+FROM maven:3.5.3-jdk-8 as builder
+
+LABEL maintainer="mritd <mritd1234@gmail.com>"
+
+ARG TZ="Asia/Shanghai"
+ARG BUILD_USER="apache"
+
+ENV TZ ${TZ}
+ENV REPO_ADDR https://github.com/${BUILD_USER}/incubator-skywalking.git
+
+RUN apt-get upgrade -y \
+    && apt-get install tzdata git -y \
+    && git clone ${REPO_ADDR} /skywalking \
+    && (cd /skywalking \
+    && git submodule init \
+    && git submodule update \
+    && mvn clean package -DskipTests) \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && apt-get clean
+
+FROM openjdk:8u151-jdk
+
+ARG TZ="Asia/Shanghai"
+
+ENV TZ ${TZ}
+ENV SKYWALKING_HOME /usr/lib/skywalking
+
+COPY --from=builder /skywalking/dist/*.tar.gz /
+
+RUN apt-get upgrade -y \
+    && apt-get install tzdata -y \
+    && mkdir ${SKYWALKING_HOME} \
+	&& tar -zxf /*.tar.gz -C ${SKYWALKING_HOME} --strip-components 1 \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && apt-get clean \
+    && rm -rf /*.tar.gz
+
+COPY bin/*.sh ${SKYWALKING_HOME}/bin/
+
+WORKDIR ${SKYWALKING_HOME}/bin
+
+CMD ["/bin/bash"]
