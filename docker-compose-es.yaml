@@ -1,0 +1,62 @@
+version: '3'
+services:
+  skywalking-es:
+    container_name: skywalking-es
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.8
+    restart: always
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "ELASTIC_PASSWORD=skywalking"
+      - "cluster.name=CollectorDBCluster"
+      - "bootstrap.memory_lock=true"
+      - "discovery.type=single-node"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    network_mode: "host"
+#    networks:
+#      - skywalking
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+
+  skywalking-collectorService:
+    container_name: skywalking-collectorService
+    image: skywalking:latest
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./collector-storage-docker/storage-es.yml:/usr/lib/skywalking/config/application.yml
+    environment:
+      - TEST_DATABASE
+#    networks:
+#      - skywalking
+#    ports:
+#      - "8080:8080"
+#      - "10800:10800"
+#      - "11800:11800"
+#      - "12800:12800"
+    command: ["bash","collectorService.sh"]
+
+  skywalking-webappService:
+    container_name: skywalking-webappService
+    image: skywalking:latest
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./collector-storage-docker/storage-es.yaml:/usr/lib/skywalking/config/application.yml
+    environment:
+      - TEST_DATABASE
+#    networks:
+#      - skywalking
+#    ports:
+#      - "8080:8080"
+#      - "10800:10800"
+#      - "11800:11800"
+#      - "12800:12800"
+    command: ["bash","webappService.sh"]
+
+#networks:
+#  skywalking:
