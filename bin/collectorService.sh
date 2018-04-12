@@ -38,16 +38,18 @@ done
 
 COLLECTOR_OPTIONS=" -Dcollector.logDir=${COLLECT_LOG_DIR}"
 
-while :
-do
-    status_code=$(curl -m 5 -s -o /dev/null -w %{http_code} http://localhost:9200/_cat/health)
-    if [ ${status_code} -ne 200 ];then
-        echo -e "\033[33mWaiting elasticsearch...\033[0m"
-        sleep 1
-    else
-        echo -e "\033[32mElasticsearch connect is ok!\033[0m"
-        break
-    fi
-done
+if [ "${TEST_DATABASE}" == "es" ]; then
+    while :
+    do
+        status_code=$(curl -m 5 -s -o /dev/null -w %{http_code} http://localhost:9200/_cat/health)
+        if [ ${status_code} -ne 200 ];then
+            echo -e "\033[33mWaiting elasticsearch...\033[0m"
+            sleep 1
+        else
+            echo -e "\033[32mElasticsearch connect is ok!\033[0m"
+            break
+        fi
+    done
+fi
 
 "$_RUNJAVA" ${JAVA_OPTS} ${COLLECTOR_OPTIONS} -classpath $CLASSPATH org.apache.skywalking.apm.collector.boot.CollectorBootStartUp

@@ -1,8 +1,8 @@
 FROM maven:3.5.3-jdk-8 as builder
 
-LABEL maintainer="HanSenJ <28707699@qq.com>"
+LABEL maintainer="mritd <mritd1234@gmail.com>"
 
-ARG TZ="Asia/Shanghai"
+ARG TZ="UTC"
 ARG BUILD_USER="apache"
 
 ENV TZ ${TZ}
@@ -21,9 +21,11 @@ RUN apt-get upgrade -y \
 
 FROM openjdk:8u151-jdk
 
-ARG TZ="Asia/Shanghai"
+ARG TZ="UTC"
+ARG TEST_DATABASE="es"
 
 ENV TZ ${TZ}
+ENV TEST_DATABASE ${TEST_DATABASE}
 ENV SKYWALKING_HOME /usr/lib/skywalking
 
 COPY --from=builder /skywalking/dist/*.tar.gz /
