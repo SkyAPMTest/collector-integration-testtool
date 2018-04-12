@@ -1,6 +1,6 @@
 FROM maven:3.5.3-jdk-8 as builder
 
-LABEL maintainer="mritd <mritd1234@gmail.com>"
+LABEL maintainer="HanSenJ <28707699@qq.com>"
 
 ARG TZ="UTC"
 ARG BUILD_USER="apache"
