@@ -39,15 +39,15 @@ services:
 #      - "12800:12800"
     command: ["bash","collectorService.sh"]
 
-  skywalking-webappService:
-    container_name: skywalking-webappService
-    image: skywalking:latest
-    restart: always
-    network_mode: "host"
-    volumes:
-      - ./collector-storage-docker/h2/storage-h2.yml:/usr/lib/skywalking/config/application.yml
-    environment:
-      - TEST_DATABASE
+#  skywalking-webappService:
+#    container_name: skywalking-webappService
+#    image: skywalking:latest
+#    restart: always
+#    network_mode: "host"
+#    volumes:
+#      - ./collector-storage-docker/h2/storage-h2.yml:/usr/lib/skywalking/config/application.yml
+#    environment:
+#      - TEST_DATABASE
 #    networks:
 #      - skywalking
 #    ports:
@@ -55,7 +55,7 @@ services:
 #      - "10800:10800"
 #      - "11800:11800"
 #      - "12800:12800"
-    command: ["bash","webappService.sh"]
+#    command: ["bash","webappService.sh"]
 
 #networks:
 #  skywalking:
