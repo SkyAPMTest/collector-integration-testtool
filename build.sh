@@ -56,6 +56,12 @@ docker build -t skywalking  --build-arg BUILD_USER="${BUILD_USER}" \
                             -f Dockerfile-skywalking .
 
 echo "Starting docker compose..."
-docker-compose -f docker-compose-${TEST_DATABASE}.yaml up -d
+if [ "${TEST_DATABASE}" = "es" ]; then
+   docker-compose -f ./collector-storage-docker/es-transport/docker-compose-${TEST_DATABASE}.yaml up -d
+fi
+if [ "${TEST_DATABASE}" = "h2" ]; then
+   docker-compose -f ./collector-storage-docker/h2/docker-compose-${TEST_DATABASE}.yaml up -d
+fi
+
 
 echo "Success!"
