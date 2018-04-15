@@ -32,8 +32,8 @@ while getopts "u:d:t:" OPT; do
     esac
 done
 
-if [ "${TEST_DATABASE}" != "es" ] && [ "${TEST_DATABASE}" != "h2" ]; then
-    echo -e "\033[31mError: TEST_DATABASE type not supported,only es|h2 supported!\033[0m"
+if [ "${TEST_DATABASE}" != "es-rest" ] && [ "${TEST_DATABASE}" != "es-transport" ] && [ "${TEST_DATABASE}" != "h2" ]; then
+    echo -e "\033[31mError: TEST_DATABASE type not supported,only es-rest|es-transport|h2 supported!\033[0m"
     exit 1
 fi
 
