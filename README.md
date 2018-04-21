@@ -9,15 +9,17 @@ The output result is expected to start the docker container for the main project
 
 ## To start developing  Collector-integration-testtool
 
-
 If you want to use collector-integration-testtool right away there are the options:
 
 Set up the database environment variable, which is es-transport, es-rest, h2.
 
+```
+$ export TEST_DATABASE=es-transport
+```
+
 ##### You have a working [Docker environment].
 
 ```
-$ export TEST_DATABASE=es-transport
 $ ./build -u your account  
 ```
 
