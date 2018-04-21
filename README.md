@@ -1,6 +1,6 @@
 The script is started with a container project for the main project and test project based on the github account of the fork and is used for project testing. The boot parameter provides the global configuration of yaml through the docker project.
 
-To do this, execute the build.sh file, enter the fork user name according to the prompt, and then start executing and starting the project.
+To do this, execute the build.sh file, enter the fork account name according to the prompt, and then start executing and starting the project.
 
 The output result is expected to start the docker container for the main project and test project, and start the corresponding database service container according to the environment variable.
 
@@ -9,7 +9,7 @@ The output result is expected to start the docker container for the main project
 
 ## To start developing  Collector-integration-testtool
 
-If you want to use collector-integration-testtool right away there are the options:
+If you want to developing collector-integration-testtool right away there are two options:
 
 Set up the database environment variable, which is es-transport, es-rest, h2.
 
