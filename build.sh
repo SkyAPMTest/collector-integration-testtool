@@ -55,6 +55,12 @@ docker build -t skywalking  --build-arg BUILD_USER="${BUILD_USER}" \
                             --build-arg TZ="${TZ}" \
                             -f Dockerfile-skywalking .
 
+if [ "${TEST_DATABASE}" == "h2" ]; then                            
+   docker build -t skywalking-h2 --force-rm=true \
+                                 --no-cache=true \
+                                 -f  ./collector-storage-docker/${TEST_DATABASE}/Dockerfile-h2 .
+fi
+
 echo "Starting docker compose..."
    docker-compose -f ./collector-storage-docker/${TEST_DATABASE}/docker-compose.yaml up -d
 echo "Success!"
