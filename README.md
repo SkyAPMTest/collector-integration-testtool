@@ -4,6 +4,11 @@ To do this, execute the build.sh file, enter the fork user name according to the
 
 The output result is expected to start the docker container for the main project and test project, and start the corresponding database service container according to the environment variable.
 
+
+----
+
+## To start using Kubernetes
+
 To start developing  Collector-integration-testtool
 
 If you want to use collector-integration-testtool right away there are the options:
