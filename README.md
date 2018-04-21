@@ -4,6 +4,18 @@ To do this, execute the build.sh file, enter the fork user name according to the
 
 The output result is expected to start the docker container for the main project and test project, and start the corresponding database service container according to the environment variable.
 
+To start developing  Collector-integration-testtool
+
+If you want to use collector-integration-testtool right away there are the options:
+
+Set up the database environment variable, which is es-transport, es-rest, h2.
+
+##### You have a working [Docker environment].
+
+```
+$ export TEST_DATABASE=es-transport
+$ ./build -u your account  
+```
 
 
 
