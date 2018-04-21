@@ -7,9 +7,8 @@ The output result is expected to start the docker container for the main project
 
 ----
 
-## To start using Kubernetes
+## To start developing  Collector-integration-testtool
 
-To start developing  Collector-integration-testtool
 
 If you want to use collector-integration-testtool right away there are the options:
 
