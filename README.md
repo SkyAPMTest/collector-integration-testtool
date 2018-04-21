@@ -25,6 +25,7 @@ $ export TEST_DATABASE=es-transport
 ```
 $ ./build -u your account  
 ```
+The build.sh runs about 15 to 20 minutes.
 
 
 
